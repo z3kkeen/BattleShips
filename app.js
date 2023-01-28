@@ -1,14 +1,12 @@
 function toggleNumber(el) {
+
     //Check if number is already "locked"
-    if (el.classList == "locked") {
-        //Remove class to element
-        el.classList.remove("locked");
-    } else {
+    if (el.classList !== "locked") {
         //Get parent element (div) of el (button) and get all elements
         const lockedElements = el.parentElement.querySelectorAll(".locked");
 
         //Check if locked elements is less than 7
-        if (lockedElements.length < 7)
+        if (lockedElements.length < 11)
             //If not, lock number by adding class to element
             el.classList.add("locked");
 
@@ -17,13 +15,14 @@ function toggleNumber(el) {
 
 };
 
+    
 function generateNumbers(el) {
     // 1. Check if any numbers are locked
     const lockedElements = el.parentElement.querySelectorAll(".locked");
 
     //Check if locked elements is less than 7
-    if (lockedElements.length < 7) {
-        for (let i = lockedElements.length; i < 7;) {
+    if (lockedElements.length < 11) {
+        for (let i = lockedElements.length; i < 11;) {
             //Generate random number between 1-40
             const rNumber = Math.floor(Math.random() * 40) + 1;
 
@@ -39,8 +38,12 @@ function generateNumbers(el) {
         };
     };
 
-};
+};   
+
 function init() {
+    const paragraph = document.querySelector("#pp")
+    paragraph.innerText ="Place the boats Bitch"
+
     const leftSection = document.querySelector("#left");
 
     // Create 12 divs that holds the numbers
@@ -60,25 +63,19 @@ function init() {
             newButton.onclick = function () {
                 toggleNumber(this);
             }
-
             //Add button inside div
             newDiv.appendChild(newButton);
         }
-
-        //Add row name A, B, C...
-
-        const newLetter = document.createElement("p")
-
-        
-        newDiv.appendChild(newLetter)
-
 
         //Add div (with buttons) to left section
         leftSection.appendChild(newDiv);
     };
 
-    
+    if(toggleNumber(this) == 11){
+        paragraph.innerText = "Attack"
+    }
 
 }
 //Ropar på att functionen ska starta
 init();
+
